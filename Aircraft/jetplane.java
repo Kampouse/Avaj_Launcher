@@ -2,13 +2,13 @@ package  aircraft;
 import aircraft.*;
 import tower.*;
 
-public class helicopter extends  aircraft implements  flyable{
-  final String type = "helicopter";
+public class jetplane extends  aircraft implements  flyable{
+
+  final String type = "jetplane";
+
    public  String getType() {
     return type;
    }
-
-  @Override
   public void updateConditions() {
     // TODO Auto-generated method stub
     
@@ -21,10 +21,11 @@ public class helicopter extends  aircraft implements  flyable{
   }
  
    
-  public helicopter(String name, Coordinates coordinates) {
+  public jetplane(String name, Coordinates coordinates) {
     super(name, coordinates);
     // TODO Auto-generated constructor stub
   }
+
 
 }
   

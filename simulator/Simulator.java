@@ -7,13 +7,13 @@ import java.util.Scanner;
 import java.lang.Integer.*;
 import java.util.Arrays;
 import parser.Parser;
-
+import aircraft.aircraftfactory;
 public class Simulator {
 
 	// start of simlator class
-
 	public Simulator(Parser parser) {
-		// TODO Auto-generated constructor stub
+	aircraftfactory aircraftfactory = new aircraftfactory();
+	 
 	}
 
 }

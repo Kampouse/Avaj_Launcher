@@ -1,9 +1,11 @@
-package  aircraft;
+package aircraft;
 import aircraft.*;
 import tower.*;
 
-public class helicopter extends  aircraft implements  flyable{
-  final String type = "helicopter";
+public class balloon extends  aircraft implements  flyable{
+
+   
+  final String type = "balloon";
    public  String getType() {
     return type;
    }
@@ -20,11 +22,9 @@ public class helicopter extends  aircraft implements  flyable{
     
   }
  
-   
-  public helicopter(String name, Coordinates coordinates) {
+  public balloon(String name, Coordinates coordinates) {
     super(name, coordinates);
     // TODO Auto-generated constructor stub
   }
-
 }
   

@@ -9,12 +9,12 @@ public abstract  class aircraft {
     private long nextId() {
       return id = ++idCounter;
        }
+    
    aircraft (String name, Coordinates coordinates) {
       this.name = name;
       this.id = nextId();
       this.coordinates = coordinates;
    } 
-
 }
 
 

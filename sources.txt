@@ -1,4 +1,7 @@
+./Aircraft/balloon.java
 ./Aircraft/aircraft.java
+./Aircraft/jetplane.java
+./Aircraft/aircraftfactory.java
 ./Aircraft/Coordinates.java
 ./Aircraft/flyable.java
 ./Aircraft/helicopter.java
