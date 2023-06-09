@@ -6,6 +6,8 @@ import java.io.FileNotFoundException; // Import this class to handle errors
 import java.util.Scanner;
 import java.lang.Integer.*;
 import java.util.Arrays;
+import simulator.*;
+import aircraft.*;
 
 public class Parser {
 	String filename;
@@ -118,7 +120,7 @@ public class Parser {
 	}
 
 	// return <flyable> object list 
-	private void crafters(String[] elements) {
+	private void crafters(String[] elements, aircraftfactory aircraftfactory) {
 		if (elements[0].equals("Baloon")) {
 			// create a Baloon
 		} else if (elements[0].equals("JetPlane")) {
@@ -130,13 +132,14 @@ public class Parser {
 
 	// return <flyable> object list
 	public void init() {
+		aircraftfactory aircraftfactory = new aircraftfactory();
 		readerlines(new File(filename));
 		simulationTimeline();
 		for (int i = 1; i < lines.length; i++) {
 			if (lines[i] == null) {
 				break;
 			}
-			crafters(line_to_craft(i));
+			crafters(line_to_craft(i), aircraftfactory);
 		}
 	}
 }

@@ -7,12 +7,14 @@ import java.util.Scanner;
 import java.lang.Integer.*;
 import java.util.Arrays;
 import parser.Parser;
-import aircraft.aircraftfactory;
+import aircraft.*;
+
 public class Simulator {
+	 aircraft[] aircrafts;
 
 	// start of simlator class
 	public Simulator(Parser parser) {
-	aircraftfactory aircraftfactory = new aircraftfactory();
+		parser.init();
 	 
 	}
 
