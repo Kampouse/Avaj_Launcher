@@ -7,6 +7,8 @@
 ./Aircraft/helicopter.java
 ./tower/weathertower.java
 ./tower/tower.java
+./tower/weatherprovider.java
 ./parser/Parser.java
 ./simulator/Simulator.java
 ./main.java
+./weatherprovider/weatherprovider.java

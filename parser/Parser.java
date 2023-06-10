@@ -6,6 +6,7 @@ import java.io.FileNotFoundException; // Import this class to handle errors
 import java.util.Scanner;
 import java.lang.Integer.*;
 import java.util.Arrays;
+import java.util.Vector;
 import simulator.*;
 import aircraft.*;
 
@@ -34,10 +35,11 @@ public class Parser {
 	public String[] getLines() {
 		return lines;
 	}
+
 	public int getTimeline() {
 		return timeline;
 	}
-	 
+
 	private void setLines(String[] lines) {
 		this.lines = lines;
 	}
@@ -91,7 +93,7 @@ public class Parser {
 		if (elements.length != 5) {
 			System.out.println("number of args  at line " + index + " is incorrect");
 			System.out.println(index);
-			 
+
 			System.exit(1);
 		}
 		if (validate_craft(elements) == false) {
@@ -119,19 +121,27 @@ public class Parser {
 		return true;
 	}
 
-	// return <flyable> object list 
-	private void crafters(String[] elements, aircraftfactory aircraftfactory) {
-		if (elements[0].equals("Baloon")) {
-			// create a Baloon
-		} else if (elements[0].equals("JetPlane")) {
-			// create a JetPlane
-		} else if (elements[0].equals("Helicopter")) {
-			// create a Helicopter
-		}
+	private Coordinates get_coordinates(String[] elements) {
+		return new Coordinates(Integer.parseInt(elements[2]),
+				Integer.parseInt(elements[3]), Integer.parseInt(elements[4]));
 	}
 
 	// return <flyable> object list
-	public void init() {
+	private aircraft crafters(String[] elements, aircraftfactory aircraftfactory) {
+
+		if (elements[0].equals("Baloon")) {
+			return aircraftfactory.newBalloon(elements[1], get_coordinates(elements));
+		} else if (elements[0].equals("JetPlane")) {
+			return aircraftfactory.newJetplane(elements[1], get_coordinates(elements));
+		} else if (elements[0].equals("Helicopter")) {
+			return aircraftfactory.newHelicopter(elements[1], get_coordinates(elements));
+		}
+		return null;
+	}
+
+	// return <flyable> object list
+	public  Vector<aircraft> init() {
+		Vector<aircraft> aircrafts = new Vector<aircraft>();
 		aircraftfactory aircraftfactory = new aircraftfactory();
 		readerlines(new File(filename));
 		simulationTimeline();
@@ -139,7 +149,17 @@ public class Parser {
 			if (lines[i] == null) {
 				break;
 			}
-			crafters(line_to_craft(i), aircraftfactory);
+
+			aircraft craft = crafters(line_to_craft(i), aircraftfactory);
+			if (craft != null) {
+				aircrafts.add(craft);
+			} else {
+				// #TODO: handle this error
+				System.out.println("craft is null");
+
+			}
 		}
+		
+		return aircrafts;
 	}
 }

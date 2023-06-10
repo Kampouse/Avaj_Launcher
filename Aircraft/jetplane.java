@@ -9,6 +9,7 @@ public class jetplane extends  aircraft implements  flyable{
    public  String getType() {
     return type;
    }
+
   public void updateConditions() {
     // TODO Auto-generated method stub
     

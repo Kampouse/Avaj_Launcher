@@ -6,16 +6,19 @@ import java.io.FileNotFoundException; // Import this class to handle errors
 import java.util.Scanner;
 import java.lang.Integer.*;
 import java.util.Arrays;
+import java.util.Vector;
 import parser.Parser;
 import aircraft.*;
 
 public class Simulator {
-	 aircraft[] aircrafts;
+	Vector<aircraft> aircrafts;
+	int timeline;
 
-	// start of simlator class
 	public Simulator(Parser parser) {
-		parser.init();
-	 
-	}
+		aircrafts = parser.init();
+		timeline = parser.getTimeline();
+	
+		
 
+	}
 }

@@ -16,9 +16,6 @@ public class main {
     try {
       // if there were more than one file could be a loop
       parser.setFilename(args[0]);
-
-      parser.init();
-
       Simulator simulator = new Simulator(parser);
 
     } catch (Exception e) {

@@ -9,6 +9,7 @@ public class Coordinates {
     this.latitude = latitude;
     this.height = height;
   }
+  
   public int get_longitude() {
     return longitude;
   } 

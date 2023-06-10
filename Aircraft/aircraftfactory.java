@@ -10,19 +10,14 @@ public  class  aircraftfactory extends  aircraft {
      public  aircraftfactory (String name, Coordinates coordinates) {
      super(name, coordinates);
    }
-   public aircraft  generator(String type, String name, Coordinates coordinates) {
-     if (type == "balloon") {
-       return new balloon(name, coordinates);
-     }
-     else if (type == "helicopter") {
-       return new helicopter(name, coordinates);
-     }
-     else if (type == "jetplane") {
-       return new jetplane(name, coordinates);
-     }
-     else {
-       return null;
-     }
+    public aircraft newBalloon(String name, Coordinates coordinates) {
+      return new balloon(name, coordinates);
+    }
+   public aircraft newHelicopter(String name, Coordinates coordinates) {
+     return new helicopter(name, coordinates);
+   }
+   public aircraft newJetplane(String name, Coordinates coordinates) {
+     return new jetplane(name, coordinates);
    }
 
  }
