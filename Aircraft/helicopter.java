@@ -19,12 +19,25 @@ public class helicopter extends  aircraft implements  flyable{
     // TODO Auto-generated method stub
     
   }
+@Override 
+  public String get_type() {
+    return  type;
+    
+  }
+@Override 
+  public Coordinates get_pos() {
+    return  this.coordinates;
+    
+  }
+ 
+ 
  
    
   public helicopter(String name, Coordinates coordinates) {
     super(name, coordinates);
     // TODO Auto-generated constructor stub
   }
+   
 
 }
   

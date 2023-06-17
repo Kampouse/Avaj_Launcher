@@ -127,7 +127,7 @@ public class Parser {
 	}
 
 	// return <flyable> object list
-	private aircraft crafters(String[] elements, aircraftfactory aircraftfactory) {
+	private flyable crafters(String[] elements, aircraftfactory aircraftfactory) {
 
 		if (elements[0].equals("Baloon")) {
 			return aircraftfactory.newBalloon(elements[1], get_coordinates(elements));
@@ -140,8 +140,8 @@ public class Parser {
 	}
 
 	// return <flyable> object list
-	public  Vector<aircraft> init() {
-		Vector<aircraft> aircrafts = new Vector<aircraft>();
+	public  Vector<flyable> init() {
+		Vector<flyable> aircrafts = new Vector<flyable>();
 		aircraftfactory aircraftfactory = new aircraftfactory();
 		readerlines(new File(filename));
 		simulationTimeline();
@@ -150,7 +150,7 @@ public class Parser {
 				break;
 			}
 
-			aircraft craft = crafters(line_to_craft(i), aircraftfactory);
+			flyable craft = crafters(line_to_craft(i), aircraftfactory);
 			if (craft != null) {
 				aircrafts.add(craft);
 			} else {

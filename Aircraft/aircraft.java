@@ -15,6 +15,11 @@ public abstract  class aircraft {
       this.id = nextId();
       this.coordinates = coordinates;
    } 
+    public Coordinates get_pos () {
+      return coordinates;
+   }
+   
+   
 }
 
 

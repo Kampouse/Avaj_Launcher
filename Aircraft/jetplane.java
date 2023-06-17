@@ -26,6 +26,16 @@ public class jetplane extends  aircraft implements  flyable{
     super(name, coordinates);
     // TODO Auto-generated constructor stub
   }
+@Override 
+  public String get_type() {
+    return  type;
+    
+  }
+@Override 
+  public Coordinates get_pos() {
+    return  this.coordinates;
+    
+  }
 
 
 }

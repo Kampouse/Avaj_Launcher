@@ -11,4 +11,3 @@
 ./parser/Parser.java
 ./simulator/Simulator.java
 ./main.java
-./weatherprovider/weatherprovider.java

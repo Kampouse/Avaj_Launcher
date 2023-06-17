@@ -19,5 +19,11 @@ public class Coordinates {
   public int get_height() {
     return height;
   }
+  public Coordinates normalize(int height) {
+    return new Coordinates(this.longitude, this.latitude, height);
+  }
+  public void to_string() {
+    System.out.println("longitude: " + longitude + " latitude: " + latitude + " height: " + height + '\n');
+  }
 
 }

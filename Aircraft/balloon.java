@@ -12,7 +12,7 @@ public class balloon extends  aircraft implements  flyable{
 
   @Override
   public void updateConditions() {
-    // TODO Auto-generated method stub
+     System.out.println("balloon#" + this.name + "(" + this.id + "): " + "Let's enjoy the good weather and take some pics.");
     
   }
   
@@ -25,6 +25,16 @@ public class balloon extends  aircraft implements  flyable{
   public balloon(String name, Coordinates coordinates) {
     super(name, coordinates);
     // TODO Auto-generated constructor stub
+  }
+@Override 
+  public String get_type() {
+    return  type;
+    
+  }
+@Override 
+  public Coordinates get_pos() {
+    return  this.coordinates;
+    
   }
 }
   
