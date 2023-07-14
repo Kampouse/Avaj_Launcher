@@ -69,5 +69,13 @@ public class weatherprovider {
 		return map[temp.get_longitude()][temp.get_latitude()].get_weather().toString();
 		 
 	}
+	// @brief  change the weather at certain coordinates
+	public   void setWeather(Coordinates cords) {
+		Coordinates temp = cords.normalize(50);
+		map[temp.get_longitude()][temp.get_latitude()].set_weather(weather[(int)(Math.random() * 4) ]);
+	}
+	public   weather_cord[][] getWeatherMap(){
+		return map;
+	}
 
 }

@@ -27,36 +27,42 @@ public class Simulator {
 		
 		 
 		for (int j = 0; j < 50; j++) {	
-		  System.out.print("|");
+		  //System.out.print("|");
 		  
 		for (int i = 1; i < 50 ; i++) {
 			//System.out.print(weather.getCurrentWeather(new Coordinates( i, j,50)));;
 			  		  
 			//System.out.print("_");
 		}
-		  System.out.println("|");
+		  //System.out.println("|");
 		}
 	}
 
-	void get_crafts_weather() {
+	void get_crafts_weather(weathertower tower) {
 		for (int i = 0; i < aircrafts.size(); i++) {
-			 
-			aircrafts.get(i).updateConditions();
+			 tower.getweather( aircrafts.get(i).get_pos(), weather);
+			//System.out.println( weather.getCurrentWeather(aircrafts.get(i).get_pos()));
+
 	  //cast(aircrafts.get(i).getClass().cast(aircrafts.get(i))).updateConditions();
 			 //cast to to the child class
-			//System.out.print(weather.getCurrentWeather(aircrafts.get(i)));
+		
 		}
 	}
 
 
 	public Simulator(Parser parser) {
+		weathertower tower = new weathertower();
 		aircrafts = parser.init();
+
 		timeline = parser.getTimeline();
+	for (int i = 0; i < aircrafts.size(); i++) {
+		aircrafts.get(i).registerTower(tower);
+	}
 
 	for (int i = 0; i < timeline; i++) {
 		//clear_screen();
-		get_crafts_weather();
-		//map_printer(i);
+		get_crafts_weather(tower);
+		map_printer(i);
 		try  {
 		 Thread.sleep(1);
 		}

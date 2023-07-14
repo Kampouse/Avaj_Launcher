@@ -2,10 +2,12 @@ package aircraft;
 import aircraft.*;
 import tower.*;
 
+
 public class balloon extends  aircraft implements  flyable{
 
    
   final String type = "balloon";
+   weathertower   weathertower;
    public  String getType() {
     return type;
    }

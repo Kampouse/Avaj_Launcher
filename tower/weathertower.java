@@ -4,21 +4,29 @@ import aircraft.*;
 import java.util.HashMap;
 
 public class weathertower extends  tower {
+
     HashMap<Coordinates, String> weathers = new HashMap<Coordinates, String>();
-   void getweather (Coordinates cords) {
-          weathers.get(cords); 
-       
+    //provide  weather for the aircrafts 
+    weatherprovider weatherprovider = new weatherprovider();
+    
+   public void getweather(Coordinates cords,weatherprovider weatherprovider) {
+ //         weathers.get(cords); 
+         System.out.println("weather is " + weatherprovider.getCurrentWeather(cords));
    }
 
-   // @brief  chagne the weather at certain coordinates
+   // @brief  chagne the weather at certain coordinates 
    // @param  cords  coordinates of the aircraft
-   void changeWeather(Coordinates cords) {
-       
+   public  void changeWeather(Coordinates cords ) {
+//TODO fix this  if this is the right way to do it
+       weatherprovider.setWeather(cords);
+         conditionsChanged();
+      }
 
-   }
-
+   //@brief fire when the weather changes  send a message to the aircrafts
    void conditionsChanged() {
+      //observer come from the tower class 
              for (int i = 0; i < observers.size(); i++) {
+               
                 // i think this look this look with a weather provider but idk
                      observers.get(i).updateConditions();
              }
