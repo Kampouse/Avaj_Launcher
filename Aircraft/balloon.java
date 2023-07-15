@@ -7,6 +7,11 @@ public class balloon extends aircraft implements flyable {
 
   final String type = "balloon";
 
+  String RainMessage[] = { " It's raining. Better watch out for lightings" };
+  String FogMessage[] = { " It's foggy. Better watch out for lightings" };
+  String SnowMessage[] = { " It's snowing. We're  gonna crash" };
+  String SunMessage[] = { " It's sunny. We're  gonna crash" };
+
   weathertower weathertower;
   String current_weather;
 
@@ -18,9 +23,27 @@ public class balloon extends aircraft implements flyable {
   public void updateConditions() {
 
     weathertower.changeWeather(this.coordinates);
-    // TODO Auto-generated method stub
-    //
-    System.out.println("hello" + weathertower.getweather(this.coordinates));
+    weathertower.getweather(this.coordinates);
+
+  }
+
+ @Override
+  public String get_possible_message() {
+   if(this.current_weather == "RAIN"){
+     return RainMessage();
+      }
+    else if(this.current_weather == "FOG"){
+      return FogMessage();
+    }
+    else if(this.current_weather == "SNOW"){
+      return SnowMessage();
+    }
+    else if(this.current_weather == "SUN"){
+      return SunMessage();
+    }
+    else{
+      return "Error";
+    }
 
   }
 
@@ -47,4 +70,25 @@ public class balloon extends aircraft implements flyable {
     return this.coordinates;
 
   }
+
+  @Override
+  public String RainMessage() {
+    return "";
+  }
+
+  @Override
+  public String FogMessage() {
+    return "";
+  }
+
+  @Override
+  public String SnowMessage() {
+    return "";
+  }
+
+  @Override
+  public String SunMessage() {
+    return "";
+  }
+
 }
