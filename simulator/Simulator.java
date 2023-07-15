@@ -40,8 +40,9 @@ public class Simulator {
 
 	void get_crafts_weather(weathertower tower) {
 		for (int i = 0; i < aircrafts.size(); i++) {
-			 tower.getweather( aircrafts.get(i).get_pos(), weather);
+			 //tower.getweather( aircrafts.get(i).get_pos());
 			//System.out.println( weather.getCurrentWeather(aircrafts.get(i).get_pos()));
+		aircrafts.get(i).updateConditions();
 
 	  //cast(aircrafts.get(i).getClass().cast(aircrafts.get(i))).updateConditions();
 			 //cast to to the child class

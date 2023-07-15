@@ -9,9 +9,10 @@ public class weathertower extends  tower {
     //provide  weather for the aircrafts 
     weatherprovider weatherprovider = new weatherprovider();
     
-   public void getweather(Coordinates cords,weatherprovider weatherprovider) {
+   public String getweather(Coordinates cords) {
  //         weathers.get(cords); 
          System.out.println("weather is " + weatherprovider.getCurrentWeather(cords));
+         return  weatherprovider.getCurrentWeather(cords);
    }
 
    // @brief  chagne the weather at certain coordinates 

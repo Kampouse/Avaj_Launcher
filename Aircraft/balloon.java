@@ -1,42 +1,50 @@
 package aircraft;
+
 import aircraft.*;
 import tower.*;
 
+public class balloon extends aircraft implements flyable {
 
-public class balloon extends  aircraft implements  flyable{
-
-   
   final String type = "balloon";
-   weathertower   weathertower;
-   public  String getType() {
+
+  weathertower weathertower;
+  String current_weather;
+
+  public String getType() {
     return type;
-   }
+  }
 
   @Override
   public void updateConditions() {
-     System.out.println("balloon#" + this.name + "(" + this.id + "): " + "Let's enjoy the good weather and take some pics.");
-    
-  }
-  
-  @Override 
-  public void registerTower(weathertower weatherTower) {
+
+    weathertower.changeWeather(this.coordinates);
     // TODO Auto-generated method stub
-    
+    //
+    System.out.println("hello" + weathertower.getweather(this.coordinates));
+
   }
- 
-  public balloon(String name, Coordinates coordinates) {
-    super(name, coordinates);
+
+  @Override
+  public void registerTower(weathertower weatherTower) {
+    weathertower = weatherTower;
+    // TODO Auto-generated method stub
+
+  }
+
+  public balloon(String name, Coordinates coordinates, String current_weather) {
+    super(name, coordinates, current_weather);
     // TODO Auto-generated constructor stub
   }
-@Override 
+
+  @Override
   public String get_type() {
-    return  type;
-    
+    return type;
+
   }
-@Override 
+
+  @Override
   public Coordinates get_pos() {
-    return  this.coordinates;
-    
+    return this.coordinates;
+
   }
 }
-  
