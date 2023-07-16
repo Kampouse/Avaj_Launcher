@@ -11,7 +11,8 @@ public class weathertower extends  tower {
     
    public String getweather(Coordinates cords) {
  //         weathers.get(cords); 
-         System.out.println("weather is " + weatherprovider.getCurrentWeather(cords));
+ //         #TODO check update this to be less randomy
+         //System.out.println("weather is " + weatherprovider.getCurrentWeather(cords));
          return  weatherprovider.getCurrentWeather(cords);
    }
 

@@ -21,10 +21,17 @@ public class balloon extends aircraft implements flyable {
 
   @Override
   public void updateConditions() {
-
+  this.current_weather = weathertower.getweather(this.coordinates);
     weathertower.changeWeather(this.coordinates);
-    weathertower.getweather(this.coordinates);
+     weathertower.getweather(this.coordinates);
 
+
+  String message = get_possible_message();
+  String type = getType();
+  String name = this.name;
+     
+  String output = type + "#" + name + "(" + this.coordinates.get_longitude() + "," + this.coordinates.get_latitude() + "," + this.coordinates.get_height() + ") " + message;
+  System.out.println(output);
   }
 
  @Override
@@ -50,12 +57,14 @@ public class balloon extends aircraft implements flyable {
   @Override
   public void registerTower(weathertower weatherTower) {
     weathertower = weatherTower;
+    
     // TODO Auto-generated method stub
 
   }
 
   public balloon(String name, Coordinates coordinates, String current_weather) {
     super(name, coordinates, current_weather);
+  
     // TODO Auto-generated constructor stub
   }
 
@@ -73,22 +82,22 @@ public class balloon extends aircraft implements flyable {
 
   @Override
   public String RainMessage() {
-    return "";
+    return "raining";
   }
 
   @Override
   public String FogMessage() {
-    return "";
+    return "fogging";
   }
 
   @Override
   public String SnowMessage() {
-    return "";
+    return "snowing";
   }
 
   @Override
   public String SunMessage() {
-    return "";
+    return "sunny";
   }
 
 }

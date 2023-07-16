@@ -20,8 +20,5 @@ public abstract class aircraft {
     this.current_weather = current_weather;
   }
 
-  public Coordinates get_pos() {
-    return coordinates;
-  }
 
 }

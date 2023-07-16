@@ -25,27 +25,32 @@ public class helicopter extends aircraft implements flyable {
 
   @Override
   public void updateConditions() {
+
+    this.current_weather = weathertower.getweather(this.coordinates);
     weathertower.changeWeather(this.coordinates);
     weathertower.getweather(this.coordinates);
 
+    String message = get_possible_message();
+    String type = getType();
+    String name = this.name;
+
+    String output = type + "#" + name + "(" + this.coordinates.get_longitude() + "," + this.coordinates.get_latitude()
+        + "," + this.coordinates.get_height() + ") " + message;
+    System.out.println(output);
   }
 
-   @Override
+  @Override
   public String get_possible_message() {
-    //make hashmap wit string and function
-   if(this.current_weather == "RAIN"){
-     return RainMessage();
-      }
-    else if(this.current_weather == "FOG"){
+    // make hashmap wit string and function
+    if (this.current_weather == "RAIN") {
+      return RainMessage();
+    } else if (this.current_weather == "FOG") {
       return FogMessage();
-    }
-    else if(this.current_weather == "SNOW"){
+    } else if (this.current_weather == "SNOW") {
       return SnowMessage();
-    }
-    else if(this.current_weather == "SUN"){
+    } else if (this.current_weather == "SUN") {
       return SunMessage();
-    }
-    else{
+    } else {
       return "Error";
     }
 
@@ -71,22 +76,22 @@ public class helicopter extends aircraft implements flyable {
 
   @Override
   public String RainMessage() {
-    return "";
+    return " It's raining. Better watch out for lightings";
   }
 
   @Override
   public String FogMessage() {
-    return "";
+    return " It's foggy. Better watch out for lightings";
   }
 
   @Override
   public String SnowMessage() {
-    return "";
+    return " It's snowing. We're  gonna crash";
   }
 
   @Override
   public String SunMessage() {
-    return "";
+    return " It's sunny. We're  gonna crash";
   }
 
 }
