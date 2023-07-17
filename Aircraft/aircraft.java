@@ -12,8 +12,9 @@ public abstract class aircraft {
   private long nextId() {
     return id = ++idCounter;
   }
-  protected void  updateCoords ( int weather_variation ) {
-    System.out.println("update the coord  ");
+  protected void  updateCoords ( int variation ) {
+    // #TODO make something  to check if the aircraft is on the ground
+    this.coordinates.update(0, 0, variation); 
           
   }
   protected String  weahterEffect( String weather,HashMap<String, String[]> weatherTrigger ) {
@@ -28,6 +29,4 @@ public abstract class aircraft {
     this.coordinates = coordinates;
     this.current_weather = current_weather;
   }
-
-
 }
