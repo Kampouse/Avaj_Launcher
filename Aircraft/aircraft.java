@@ -1,5 +1,5 @@
 package aircraft;
-
+import java.util.HashMap;
 import aircraft.*;
 
 public abstract class aircraft {
@@ -11,6 +11,15 @@ public abstract class aircraft {
 
   private long nextId() {
     return id = ++idCounter;
+  }
+  protected void  updateCoords ( int weather_variation ) {
+    System.out.println("update the coord  ");
+          
+  }
+  protected String  weahterEffect( String weather,HashMap<String, String[]> weatherTrigger ) {
+     String[] output = weatherTrigger.get(weather);
+     //#TODO  replace this  for the randomness 
+      return output[0];
   }
 
   aircraft(String name, Coordinates coordinates, String current_weather) {

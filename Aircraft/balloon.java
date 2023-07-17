@@ -1,6 +1,7 @@
 package aircraft;
 
 import aircraft.*;
+import java.util.HashMap;
 import tower.*;
 
 public class balloon extends aircraft implements flyable {
@@ -12,50 +13,53 @@ public class balloon extends aircraft implements flyable {
   String SnowMessage[] = { " It's snowing. We're  gonna crash" };
   String SunMessage[] = { " It's sunny. We're  gonna crash" };
 
+final HashMap<String, Integer  >  alititudeModifier = new HashMap<String, Integer>();
+  {
+    alititudeModifier.put("RAIN", 5);
+    alititudeModifier.put("FOG", 1);
+    alititudeModifier.put("SUN", 10);
+    alititudeModifier.put("SNOW", -7);
+  }
+
+  final HashMap<String, String[]> weatherMessage = new HashMap<String, String[]>();
+  {
+    weatherMessage.put("RAIN", RainMessage);
+    weatherMessage.put("FOG", FogMessage);
+    weatherMessage.put("SUN", SunMessage);
+    weatherMessage.put("SNOW", SnowMessage);
+  }
+
+
+
+
+
+
+
   weathertower weathertower;
   String current_weather;
 
   public String getType() {
     return type;
   }
-
-  @Override
+  @Override 
   public void updateConditions() {
-  this.current_weather = weathertower.getweather(this.coordinates);
+    this.current_weather = weathertower.getweather(this.coordinates);
     weathertower.changeWeather(this.coordinates);
-     weathertower.getweather(this.coordinates);
-
-
-  String message = get_possible_message();
-  String type = getType();
-  String name = this.name;
-     
-  String output = type + "#" + name + "(" + this.coordinates.get_longitude() + "," + this.coordinates.get_latitude() + "," + this.coordinates.get_height() + ") " + message;
-  System.out.println(output);
-  }
-
- @Override
-  public String get_possible_message() {
-   if(this.current_weather == "RAIN"){
-     return RainMessage();
-      }
-    else if(this.current_weather == "FOG"){
-      return FogMessage();
-    }
-    else if(this.current_weather == "SNOW"){
-      return SnowMessage();
-    }
-    else if(this.current_weather == "SUN"){
-      return SunMessage();
-    }
-    else{
-      return "Error";
-    }
-
+    weathertower.getweather(this.coordinates);
+    this.alititudeModifier.get(this.current_weather);
+    this.updateCoords(this.alititudeModifier.get(this.current_weather));
+    String message = this.weahterEffect(this.current_weather, this.weatherMessage);
+    String type = getType();
+    String name = this.name;
+    String output = type + "#" + name + "(" + this.coordinates.get_longitude() +
+    "," + this.coordinates.get_latitude() + "," + this.coordinates.get_height() + ") " + message;
+    System.out.println(output);
   }
 
   @Override
   public void registerTower(weathertower weatherTower) {
+     System.out.println("Tower says:" + this.type + "#" + this.name + "(" + this.id + ") registered to weather tower.");
+
     weathertower = weatherTower;
     
     // TODO Auto-generated method stub
@@ -80,24 +84,5 @@ public class balloon extends aircraft implements flyable {
 
   }
 
-  @Override
-  public String RainMessage() {
-    return "raining";
-  }
-
-  @Override
-  public String FogMessage() {
-    return "fogging";
-  }
-
-  @Override
-  public String SnowMessage() {
-    return "snowing";
-  }
-
-  @Override
-  public String SunMessage() {
-    return "sunny";
-  }
 
 }

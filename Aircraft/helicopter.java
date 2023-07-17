@@ -2,6 +2,7 @@ package aircraft;
 
 import aircraft.*;
 import tower.*;
+import java.util.HashMap;
 
 public class helicopter extends aircraft implements flyable {
 
@@ -18,6 +19,22 @@ public class helicopter extends aircraft implements flyable {
     return type;
   }
 
+  final HashMap<String, Integer> alititudeModifier = new HashMap<String, Integer>();
+  {
+    alititudeModifier.put("RAIN", 5);
+    alititudeModifier.put("FOG", 1);
+    alititudeModifier.put("SUN", 10);
+    alititudeModifier.put("SNOW", -7);
+  }
+
+  final HashMap<String, String[]> weatherMessage = new HashMap<String, String[]>();
+  {
+    weatherMessage.put("RAIN", RainMessage);
+    weatherMessage.put("FOG", FogMessage);
+    weatherMessage.put("SUN", SunMessage);
+    weatherMessage.put("SNOW", SnowMessage);
+  }
+
   public helicopter(String name, Coordinates coordinates, String current_weather) {
     super(name, coordinates, current_weather);
     // TODO Auto-generated constructor stub
@@ -29,35 +46,21 @@ public class helicopter extends aircraft implements flyable {
     this.current_weather = weathertower.getweather(this.coordinates);
     weathertower.changeWeather(this.coordinates);
     weathertower.getweather(this.coordinates);
-
-    String message = get_possible_message();
+    this.alititudeModifier.get(this.current_weather);
+    this.updateCoords(this.alititudeModifier.get(this.current_weather));
+    String message = this.weahterEffect(this.current_weather, this.weatherMessage);
     String type = getType();
     String name = this.name;
-
-    String output = type + "#" + name + "(" + this.coordinates.get_longitude() + "," + this.coordinates.get_latitude()
-        + "," + this.coordinates.get_height() + ") " + message;
+    String output = type + "#" + name + "(" + this.coordinates.get_longitude() +
+        "," + this.coordinates.get_latitude() + "," + this.coordinates.get_height() + ") " + message;
     System.out.println(output);
-  }
-
-  @Override
-  public String get_possible_message() {
-    // make hashmap wit string and function
-    if (this.current_weather == "RAIN") {
-      return RainMessage();
-    } else if (this.current_weather == "FOG") {
-      return FogMessage();
-    } else if (this.current_weather == "SNOW") {
-      return SnowMessage();
-    } else if (this.current_weather == "SUN") {
-      return SunMessage();
-    } else {
-      return "Error";
-    }
 
   }
 
   @Override
   public void registerTower(weathertower weatherTower) {
+
+    System.out.println("Tower says:" + this.type + "#" + this.name + "(" + this.id + ") registered to weather tower.");
     this.weathertower = weatherTower;
 
   }
@@ -72,26 +75,6 @@ public class helicopter extends aircraft implements flyable {
   public Coordinates get_pos() {
     return this.coordinates;
 
-  }
-
-  @Override
-  public String RainMessage() {
-    return " It's raining. Better watch out for lightings";
-  }
-
-  @Override
-  public String FogMessage() {
-    return " It's foggy. Better watch out for lightings";
-  }
-
-  @Override
-  public String SnowMessage() {
-    return " It's snowing. We're  gonna crash";
-  }
-
-  @Override
-  public String SunMessage() {
-    return " It's sunny. We're  gonna crash";
   }
 
 }
