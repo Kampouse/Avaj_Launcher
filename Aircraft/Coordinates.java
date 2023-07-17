@@ -35,32 +35,31 @@ public class Coordinates {
      
     this.height = height < 0 ? 0 : height > 100 ? 100 : height;
   }
-  public void update (int longitude, int latitude, int height) {
-    if (this.height + height < 0)
+  public void variation (Coordinates variation) {
+
+    if (this.height + variation.height < 0) {
       this.height = 0;
-    else
-      this.height += height;
-     
-
-    if (this.longitude + longitude > 1000 ) {
-      this.longitude =  999;
-    } else if (this.longitude + longitude < 0) {
+    } else if (this.height + variation.height > 100) {
+      this.height = 100;
+    } else {
+      this.height += variation.height;
+    }
+    if (this.longitude + variation.longitude < 0) {
       this.longitude = 0;
+    } else if (this.longitude + variation.longitude > 1000) {
+      this.longitude = 999;
     } else {
-      this.longitude += longitude;
-
+      this.longitude += variation.longitude;
     }
-
-    if (this.latitude + latitude > 1000 ) {
-
-      this.latitude =  999;
-
-      }
-    else if (this.latitude + latitude < 0) {
+    if (this.latitude + variation.latitude < 0) {
       this.latitude = 0;
+    } else if (this.latitude + variation.latitude > 1000) {
+      this.latitude = 999;
     } else {
-      this.latitude += latitude;
+      this.latitude += variation.latitude;
     }
+
+
   }
 
 }

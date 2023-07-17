@@ -7,5 +7,7 @@ public interface    flyable {
   public void registerTower(weathertower weatherTower);
   public Coordinates get_pos();
   public String get_type();
+  public String get_name();
+  //public void land();
 
 }

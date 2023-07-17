@@ -17,64 +17,60 @@ public class Simulator {
 	int timeline;
 	weatherprovider weather = weatherprovider.getProvider();
 
-	private void clear_screen () {
+	private void clear_screen() {
 		final String ANSI_CLS = "\u001b[2J";
 		final String ANSI_HOME = "\u001b[H";
 		System.out.print(ANSI_CLS + ANSI_HOME);
 		System.out.flush();
 	}
-	private  void map_printer(int time_at) {
-		
-		 
-		for (int j = 0; j < 50; j++) {	
-		  //System.out.print("|");
-		  
-		for (int i = 1; i < 50 ; i++) {
-			//System.out.print(weather.getCurrentWeather(new Coordinates( i, j,50)));;
-			  		  
-			//System.out.print("_");
-		}
-		  //System.out.println("|");
+
+	private void map_printer(int time_at) {
+
+		for (int j = 0; j < 50; j++) {
+			// System.out.print("|");
+
+			for (int i = 1; i < 50; i++) {
+				// System.out.print(weather.getCurrentWeather(new Coordinates( i, j,50)));;
+
+				// System.out.print("_");
+			}
+			// System.out.println("|");
 		}
 	}
 
 	void get_crafts_weather(weathertower tower) {
-		for (int i = 0; i < aircrafts.size(); i++) {
-			 //tower.getweather( aircrafts.get(i).get_pos());
-			//System.out.println( weather.getCurrentWeather(aircrafts.get(i).get_pos()));
-			aircrafts.get(i).updateConditions();
 
-	  //cast(aircrafts.get(i).getClass().cast(aircrafts.get(i))).updateConditions();
-			 //cast to to the child class
-		
+		Vector<flyable> Aircrafts = tower.get_observers();
+
+		for (int i = 0; i < Aircrafts.size(); i++) {
+
+			Aircrafts.get(i).updateConditions();
+			tower.conditionsChanged(i);
+			if (Aircrafts.size() == 0) {
+				break;
+			}
+			System.out.println("Aircrafts size is " + Aircrafts.size());
 		}
-	}
 
+	}
 
 	public Simulator(Parser parser) {
 		weathertower tower = new weathertower();
 		aircrafts = parser.init();
-
 		timeline = parser.getTimeline();
-	for (int i = 0; i < aircrafts.size(); i++) {
-		aircrafts.get(i).registerTower(tower);
+		for (int i = 0; i < aircrafts.size(); i++) {
+			aircrafts.get(i).registerTower(tower);
+			tower.registerAirCraft(aircrafts.get(i));
+		}
+		for (int i = 0; i < timeline; i++) {
+			try {
+				clear_screen();
+				System.out.println("Time is " + i + "----------------------------------------------- ");
+				get_crafts_weather(tower);
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				System.out.println("Error");
+			}
+		}
 	}
-
-	for (int i = 0; i < timeline; i++) {
-		//clear_screen();
-		get_crafts_weather(tower);
-		map_printer(i);
-		try  {
-		 Thread.sleep(1);
-		}
-		catch (InterruptedException e) {
-			System.out.println("Error");
-		}
-	}
-
-
-
-
-
-		}
 }
