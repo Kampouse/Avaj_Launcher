@@ -73,10 +73,10 @@ String SunMessage[] = {
 
 final HashMap<String, Coordinates  >  alititudeModifier = new HashMap<String, Coordinates>();
   {
-    alititudeModifier.put("SUN", new Coordinates(10, 0,-100));
-    alititudeModifier.put("FOG", new Coordinates(1, 0, -100));
-    alititudeModifier.put("RAIN", new Coordinates(5, 0,-100));
-    alititudeModifier.put("SNOW",  new Coordinates(0, 0, -100));
+    alititudeModifier.put("SUN", new Coordinates(2, 0,4));
+    alititudeModifier.put("FOG", new Coordinates(1, 0, -3));
+    alititudeModifier.put("RAIN", new Coordinates(0, 0,-5));
+    alititudeModifier.put("SNOW",  new Coordinates(0, 0, -15));
   }
 
   final HashMap<String, String[]> weatherMessage = new HashMap<String, String[]>();

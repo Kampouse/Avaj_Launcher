@@ -24,20 +24,6 @@ public class Simulator {
 		System.out.flush();
 	}
 
-	private void map_printer(int time_at) {
-
-		for (int j = 0; j < 50; j++) {
-			// System.out.print("|");
-
-			for (int i = 1; i < 50; i++) {
-				// System.out.print(weather.getCurrentWeather(new Coordinates( i, j,50)));;
-
-				// System.out.print("_");
-			}
-			// System.out.println("|");
-		}
-	}
-
 	void get_crafts_weather(weathertower tower) {
 
 		Vector<flyable> Aircrafts = tower.get_observers();
@@ -64,8 +50,14 @@ public class Simulator {
 		}
 		for (int i = 0; i < timeline; i++) {
 			try {
-				clear_screen();
+				//clear_screen();
 				System.out.println("Time is " + i + "----------------------------------------------- ");
+				if (tower.get_observers().size() == 0) {
+					System.out.println("////////////////////////////////////////");
+					System.out.println("Stopping simulation no aircrafts flying");
+					System.out.println("////////////////////////////////////////");
+					break;
+				}
 				get_crafts_weather(tower);
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

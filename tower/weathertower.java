@@ -25,8 +25,14 @@ public class weathertower extends tower {
    }
 
    void land(flyable flyable, int index) {
-      System.out.println(flyable.get_name() + " is landing");
+      String type = flyable.get_type();
+      String name = flyable.get_name();
+      String output = type + "#" + name; 
+System.out.println("///////////////////////////////////////////////////////////////");
+      System.out.println(output + " landing.");
+      System.out.println(output + " has unregistered from weather tower.");
       observers.remove(index);
+System.out.println("///////////////////////////////////////////////////////////////");
    }
 
    // @brief fire when the weather changes send a message to the aircrafts
